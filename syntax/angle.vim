@@ -12,7 +12,20 @@ syntax keyword angleFunction index length
 syntax keyword angleFunction input print str
 syntax keyword angleFunction asType isNull
 
+syntax match angleComment "\v#.*$"
+
+syntax match angleOperator "\v\&"
+syntax match angleOperator "\v\*"
+syntax match angleOperator "\v\+"
+syntax match angleOperator "\v\-"
+syntax match angleOperator "\v\/"
+syntax match angleOperator "\v\=\="
+syntax match angleOperator "\v\^"
+syntax match angleOperator "\v\|"
+
 highlight link angleKeyword Keyword
 highlight link angleFunction Function
+highlight link angleComment Comment
+highlight link angleOperator Operator
 
 let b:current_syntax = "angle"
