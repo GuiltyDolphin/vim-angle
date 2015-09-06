@@ -42,18 +42,16 @@ syntax cluster angleLiteralCluster
       \ contains=@angleString,@angleNumber,@angleList,@angleBool,@angleCharacter,@angleRange,@angleNull,@angleLambda,@angleKeywordLiteral
 
 
-" FIXME: These currently match anywhere but should only match in
-" operator expression.
-syntax match angleOperator "\v\&"
-syntax match angleOperator "\v\*"
-syntax match angleOperator "\v\+"
-syntax match angleOperator "\v\-"
-syntax match angleOperator "\v\/"
-syntax match angleOperator "\v\>\=?"
-syntax match angleOperator "\v\<\=?"
-syntax match angleOperator "\v\=\="
+syntax match angleOperator "\v\(@<=\&"
+syntax match angleOperator "\v\(@<=\*"
+syntax match angleOperator "\v\(@<=\+"
+syntax match angleOperator "\v\(@<=\-"
+syntax match angleOperator "\v\(@<=\/"
+syntax match angleOperator "\v\(@<=\>\=?"
+syntax match angleOperator "\v\(@<=\<\=?"
+syntax match angleOperator "\v\(@<=\=\="
 syntax match angleOperator "\v\^"
-syntax match angleOperator "\v\|"
+syntax match angleOperator "\v\(@<=\|"
 
 
 
