@@ -9,6 +9,11 @@ syntax keyword angleRepeat for do while
 syntax keyword angleKeyword in break continue
 syntax keyword angleKeyword defun return
 
+syntax keyword angleStatement defun nextgroup=angleFunctionDef skipwhite
+
+syntax match angleFunctionDef "\v\s+\a\w*"
+      \ nextgroup=angleParameterList contained
+
 syntax keyword angleBuiltinFunction index length
 syntax keyword angleBuiltinFunction input print str
 syntax keyword angleBuiltinFunction asType isNull
@@ -29,21 +34,25 @@ syntax match angleNumber "\v[0-9]+"
 
 syntax match angleFloat "\v[0-9]+\.[0-9]+"
 
-syntax region angleString start=/\ve?"/ skip=/\v\\./ end=/\v"/
+
+" Taken from the Haskell syntax file, as Angle uses the same string and
+" character escaping as haskell.
+syn match   angleSpecialChar	contained "\\\([0-9]\+\|o[0-7]\+\|x[0-9a-fA-F]\+\|[\"\\'&\\abfnrtv]\|^[A-Z^_\[\\\]]\)"
+syn match   angleSpecialChar	contained "\\\(NUL\|SOH\|STX\|ETX\|EOT\|ENQ\|ACK\|BEL\|BS\|HT\|LF\|VT\|FF\|CR\|SO\|SI\|DLE\|DC1\|DC2\|DC3\|DC4\|NAK\|SYN\|ETB\|CAN\|EM\|SUB\|ESC\|FS\|GS\|RS\|US\|SP\|DEL\)"
+syn match   angleSpecialCharError	contained "\\&\|'''\+"
+syn region  angleString		start=+e\?"+  skip=+\\\\\|\\"+  end=+"+  contains=angleSpecialChar
+syn match   angleCharacter		"[^a-zA-Z0-9_']'\([^\\]\|\\[^']\+\|\\'\)'"lc=1 contains=angleSpecialChar,angleSpecialCharError
+syn match   angleCharacter		"^'\([^\\]\|\\[^']\+\|\\'\)'" contains=angleSpecialChar,angleSpecialCharError
 
 syntax match angleBracket "\v\(|\)|\{|\}"
 
-" Temporary? -> Would need to only allow one character, but allow for
-" escaped unicode sequences.
-syntax region angleChar start=/\v'/ skip=/\v\\./ end=/\v'/
+syntax match angleDelimiter "\v(\(|\)|\{|\}|\;)"
 
 syntax keyword angleBool true false
 
 syntax keyword angleNull null
 
 syntax match angleIdentifier "\v\a\w*"
-
-syntax match angleParameterConstraint "\v\@\a\w*"
 
 syntax match angleKeywordLiteral "\v\:\a\w*"
 
@@ -53,15 +62,24 @@ syntax match angleBraces "\v\{|\}"
 
 syntax match angleParens "\v\(|\)"
 
-syntax match angleElementSeparator ","
-
-syntax match angleStatementEnd ";"
+syntax match angleElementSeparator "\v\,"
 
 " syntax match angleAnnotationConstraint
 
-syntax match angleArgument "(\$|\!|)?" " contains=@angleIdentifier
+syntax region angleParameterList start="(" end=")"
+      \ contains=angleParameter,angleParameterConstraintIndicator
+      \ contained
 
-syntax region angleArgumentList start="(" end=")" contains=@angleArgument
+syntax match angleParameter "\v(\$|\!|)?" nextgroup=angleIdentifier
+      \ contained
+
+
+syntax match angleParameterConstraintIndicator "\v\:"
+      \ nextgroup=angleParameterConstraint contained
+
+syntax match angleParameterConstraint "\v\@"
+      \ nextgroup=angleIdentifier contained
+
 
 highlight link angleKeyword Keyword
 highlight link angleBuiltinFunction Function
@@ -70,7 +88,7 @@ highlight link angleOperator Operator
 highlight link angleNumber Number
 highlight link angleFloat Float
 highlight link angleString String
-highlight link angleChar Character
+highlight link angleChararacter Character
 highlight link angleBool Boolean
 highlight link angleIdentifier Identifier
 highlight link angleParameterConstraint Identifier
@@ -82,7 +100,13 @@ highlight link angleListBracket Delimiter
 highlight link angleBraces Delimiter
 highlight link angleRepeat Repeat
 highlight link angleConditional Conditional
-highlight link angleArgument Identifier
-highlight link angleArgumentList Delimiter
+highlight link angleParameter Identifier
+highlight link angleParameterList Delimiter
+highlight link angleStatement Keyword
+highlight link angleParameterConstraintIndicator Delimiter
+highlight link angleFunctionDef Function
+highlight link angleSpecialCharError Error
+highlight link angleSpecialChar SpecialChar
+highlight link angleDelimiter Delimiter
 
 let b:current_syntax = "angle"
