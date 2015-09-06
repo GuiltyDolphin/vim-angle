@@ -25,8 +25,8 @@ syn region  angleString		start=+e\?"+  skip=+\\\\\|\\"+  end=+"+  contains=angle
 syn match   angleCharacter		"[^a-zA-Z0-9_']'\([^\\]\|\\[^']\+\|\\'\)'"lc=1 contains=angleSpecialChar,angleSpecialCharError
 syn match   angleCharacter		"^'\([^\\]\|\\[^']\+\|\\'\)'" contains=angleSpecialChar,angleSpecialCharError
 
-syntax match angleInteger "\v[0-9]+"
-syntax match angleFloat "\v[0-9]+\.[0-9]+"
+syntax match angleInteger "\v\-*[0-9]+"
+syntax match angleFloat "\v\-*[0-9]+\.[0-9]+"
 
 syntax keyword angleBuiltin index length
 syntax keyword angleBuiltin input print str
