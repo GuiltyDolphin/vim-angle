@@ -1,8 +1,16 @@
-if exists("b:current_syntax")
-  finish
+" Syntax highlighting for Angle files.
+
+if !exists("main_syntax")
+  if version < 600
+    syntax clear
+  elseif exists("b:current_syntax")
+    finish
+  endif
+  let main_syntax = "angle"
 endif
 
 
+syn sync fromstart
 
 syn keyword angleStatement in break continue
 syn keyword angleStatement defun nextgroup=angleFunctionDef skipwhite
@@ -59,6 +67,8 @@ syn match angleOperator "\v\(@<=\|"
 " FIXME: range's '..' currently included as a delimiter, but should move to
 " its own group.
 syn match angleDelimiter "\v(\(|\)|\{|\}|\;|\,|\.\.)"
+
+syn region angleMultiStmt start="{" end="}" transparent fold keepend extend
 
 syn keyword angleBool true false
 
