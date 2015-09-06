@@ -10,6 +10,10 @@ elseif exists("b:current_syntax")
   finish
 endif
 
+if has("folding") && exists("angle_fold")
+  setlocal foldmethod=syntax
+endif
+
 
 syn sync fromstart
 
