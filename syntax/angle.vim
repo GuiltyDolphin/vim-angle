@@ -1,12 +1,13 @@
-" Syntax highlighting for Angle files.
+" Vim syntax file
+" Language:	Angle
+" Maintainer:	Ben Moon <https://github.com/GuiltyDolphin>
+" Version: 0.1.0
+" URL: https://github.com/GuiltyDolphin/vim-angle
 
-if !exists("main_syntax")
-  if version < 600
-    syntax clear
-  elseif exists("b:current_syntax")
-    finish
-  endif
-  let main_syntax = "angle"
+if version < 600
+  syntax clear
+elseif exists("b:current_syntax")
+  finish
 endif
 
 
