@@ -57,7 +57,7 @@ syn cluster angleLiteralCluster
 
 syn match angleOperator "\v\(@<=\&"
 syn match angleOperator "\v\(@<=\*"
-syn match angleOperator "\v\(@<=\+"
+syn match angleOperator "\v\(@<=\+\+?"
 syn match angleOperator "\v\(@<=\-"
 syn match angleOperator "\v\(@<=\/"
 syn match angleOperator "\v\(@<=\>\=?"
