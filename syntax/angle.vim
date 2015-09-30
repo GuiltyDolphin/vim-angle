@@ -20,6 +20,7 @@ syn sync fromstart
 syn keyword angleStatement in break continue
 syn keyword angleStatement defun nextgroup=angleFunctionDef skipwhite
 syn keyword angleStatement return
+syn keyword angleStatement try catch raise
 syn keyword angleConditional if then else unless
 syn keyword angleRepeat for do while
 
@@ -65,6 +66,7 @@ syn match angleOperator "\v\(@<=\<\=?"
 syn match angleOperator "\v\(@<=\=\="
 syn match angleOperator "\v\^"
 syn match angleOperator "\v\(@<=\|"
+syn match angleOperator "\v[^=]\zs\=\ze[^=]"
 
 
 
