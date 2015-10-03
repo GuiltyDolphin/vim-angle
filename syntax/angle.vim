@@ -85,7 +85,7 @@ syn keyword angleBool true false
 syn keyword angleNull null
 syn match angleNull "\v\w@<!\(\)"
 
-syn match angleIdentifier "\v\$?\a\w*"
+syn match angleIdentifier "\v(\$|\@)?\a\w*"
 
 syn match angleKeywordLiteral "\v\:\a\w*"
 
