@@ -49,6 +49,8 @@ syn keyword angleBuiltin main
 syn keyword angleBuiltin open close read write
 syn keyword angleBuiltin shell eval include
 syn keyword angleBuiltin getArgs
+syn keyword angleBuiltin round
+syn keyword angleBuiltin nonlocal global
 
 
 
@@ -60,7 +62,7 @@ syn cluster angleLiteralCluster
 
 
 syn match angleOperator "\v\(@<=\&"
-syn match angleOperator "\v\(@<=\*"
+syn match angleOperator "\v\(@<=\*\*?"
 syn match angleOperator "\v\(@<=\+\+?"
 syn match angleOperator "\v\(@<=\-"
 syn match angleOperator "\v\(@<=\/"
@@ -70,6 +72,9 @@ syn match angleOperator "\v\(@<=\=\="
 syn match angleOperator "\v\^"
 syn match angleOperator "\v\(@<=\|"
 syn match angleOperator "\v[^=]\zs\=\ze[^=]"
+syn match angleOperator "\v\|\=\ze[^=]"
+syn match angleOperator "\v\|\|\=\ze[^=]"
+syn match angleOperator "\v\$\ze\("
 
 
 
