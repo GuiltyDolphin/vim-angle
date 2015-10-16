@@ -71,9 +71,7 @@ syn match angleOperator "\v\(@<=\<\=?"
 syn match angleOperator "\v\(@<=\=\="
 syn match angleOperator "\v\^"
 syn match angleOperator "\v\(@<=\|"
-syn match angleOperator "\v[^=]\zs\=\ze[^=]"
-syn match angleOperator "\v\|\=\ze[^=]"
-syn match angleOperator "\v\|\|\=\ze[^=]"
+syn match angleOperator "\v([^=|]|^)\zs\|{,2}\=\ze([^=|]|$)"
 syn match angleOperator "\v\$\ze\("
 
 
