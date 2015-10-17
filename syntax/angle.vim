@@ -88,7 +88,7 @@ syn keyword angleBool true false
 syn keyword angleNull null
 syn match angleNull "\v\w@<!\(\)"
 
-syn match angleIdentifier "\v(\$|\@)?\a\w*"
+syn match angleIdentifier "\v(\$|\@)?(_|\a)\w*"
 
 syn match angleKeywordLiteral "\v\:\a\w*"
 
@@ -116,10 +116,10 @@ hi def link angleDelimiter Delimiter
 hi def link angleFloat Float
 hi def link angleFunctionDef Function
 hi def link angleIdentifier Identifier
+hi def link angleInteger Number
 hi def link angleKeywordLiteral Constant
 hi def link angleListBracket Delimiter
 hi def link angleNull Constant
-hi def link angleInteger Number
 hi def link angleOperator Operator
 hi def link angleParameter Identifier
 hi def link angleParameterConstraint Identifier
