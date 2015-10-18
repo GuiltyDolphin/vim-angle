@@ -32,12 +32,11 @@ syn keyword angleTODO TODO FIXME XXX contained
 
 " Taken from the Haskell syntax file, as Angle uses the same string and
 " character escaping as Haskell.
-syn match   angleSpecialChar contained "\\\([0-9]\+\|o[0-7]\+\|x[0-9a-fA-F]\+\|[\"\\'&\\abfnrtv]\|^[A-Z^_\[\\\]]\)"
-syn match   angleSpecialChar contained "\\\(NUL\|SOH\|STX\|ETX\|EOT\|ENQ\|ACK\|BEL\|BS\|HT\|LF\|VT\|FF\|CR\|SO\|SI\|DLE\|DC1\|DC2\|DC3\|DC4\|NAK\|SYN\|ETB\|CAN\|EM\|SUB\|ESC\|FS\|GS\|RS\|US\|SP\|DEL\)"
-syn match   angleSpecialCharError	contained "\\&\|'''\+"
+syn match   angleSpecialChar contained @\v\\([0-9]+|o[0-7]+|x[[:xdigit:]]+|["'\&abfnrtv]|^[A-Z^_\[\]])@
+syn match   angleSpecialChar contained @\v\\(NUL|SOH|STX|ETX|EOT|ENQ|ACK|BEL|BS|HT|LF|VT|FF|CR|SO|SI|DLE|DC1|DC2|DC3|DC4|NAK|SYN|ETB|CAN|EM|SUB|ESC|FS|GS|RS|US|SP|DEL)@
+syn match   angleSpecialCharError contained @\v\\\&|'''+@
 syn region  angleString start=+e\?"+  skip=+\\\\\|\\"+  end=+"+  contains=angleSpecialChar
-syn match   angleCharacter "[^a-zA-Z0-9_']'\([^\\]\|\\[^']\+\|\\'\)'"lc=1 contains=angleSpecialChar,angleSpecialCharError
-syn match   angleCharacter "^'\([^\\]\|\\[^']\+\|\\'\)'" contains=angleSpecialChar,angleSpecialCharError
+syn match   angleCharacter @\v'([^\\]|\\[^']+|\\')'@ contains=angleSpecialChar,angleSpecialCharError
 
 syn match angleInteger "\v\-*[0-9]+"
 syn match angleFloat "\v\-*[0-9]+\.[0-9]+"
@@ -109,7 +108,7 @@ syn match angleParameterConstraint "\v\@"
 
 hi def link angleBool Boolean
 hi def link angleBuiltin Function
-hi def link angleChararacter Character
+hi def link angleCharacter Character
 hi def link angleComment Comment
 hi def link angleConditional Conditional
 hi def link angleDelimiter Delimiter
