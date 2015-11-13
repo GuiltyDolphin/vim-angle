@@ -49,7 +49,7 @@ syn keyword angleBuiltin open close read write
 syn keyword angleBuiltin shell eval include
 syn keyword angleBuiltin getArgs
 syn keyword angleBuiltin round
-syn keyword angleBuiltin nonlocal global
+syn keyword angleBuiltin local nonlocal global
 
 
 
