@@ -44,7 +44,7 @@ syn match angleFloat "\v\-*[0-9]+\.[0-9]+"
 syn keyword angleBuiltin index length
 syn keyword angleBuiltin input print str
 syn keyword angleBuiltin asType isNull
-syn keyword angleBuiltin main
+syn keyword angleBuiltin main asConstr
 syn keyword angleBuiltin open close read write
 syn keyword angleBuiltin shell eval include
 syn keyword angleBuiltin getArgs
